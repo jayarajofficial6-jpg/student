@@ -1,3 +1,5 @@
+import os
+
 def show_grade_criteria():
     print("--- Grade Criteria ---")
     print("90 - 100 : Grade S")
@@ -7,24 +9,6 @@ def show_grade_criteria():
     print("40 - 49  : Grade D")
     print("Below 40 : Grade F")
     print("----------------------\n")
-
-
-def show_student_details():
-    print("--- Student Details ---")
-    print("Name: Jayaraj")
-    print("Department: BCA")
-    print("Semester: 3\n")
-
-
-def show_subject_marks():
-    print("--- Subject Marks ---")
-    print("Subject 1: 85")
-    print("Subject 2: 90")
-    print("Subject 3: 95\n")
-
-
-def calculate_average():
-    return (85 + 90 + 95) / 3
 
 
 def calculate_grade(avg):
@@ -43,10 +27,28 @@ def calculate_grade(avg):
 
 
 def main():
+    # Read Jenkins parameters
+    name = os.getenv("name", "UNKNOWN")
+    dept = os.getenv("dept", "UNKNOWN")
+    sem = os.getenv("sem", "0")
+
+    m1 = int(os.getenv("m1", 0))
+    m2 = int(os.getenv("m2", 0))
+    m3 = int(os.getenv("m3", 0))
+
     show_grade_criteria()
-    show_student_details()
-    show_subject_marks()
-    avg = calculate_average()
+
+    print("--- Student Details ---")
+    print(f"Name: {name}")
+    print(f"Department: {dept}")
+    print(f"Semester: {sem}\n")
+
+    print("--- Subject Marks ---")
+    print(f"Subject 1: {m1}")
+    print(f"Subject 2: {m2}")
+    print(f"Subject 3: {m3}\n")
+
+    avg = (m1 + m2 + m3) / 3
     print(f"Average Marks: {avg}")
     print(f"Final Grade: {calculate_grade(avg)}")
 

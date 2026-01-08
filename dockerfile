@@ -1,5 +1,8 @@
 FROM python:3.13.9
-WORKDIR /app
+WORKDIR /student_enquriy
 COPY . .
-RUN pip install -r requirements.txt
-CMD ["python", "app.py"]
+RUN pip install --no-cache-dir pytest
+# Run tests at build time (CI)
+RUN pytest -v
+# Fixed entrypoint (never replaced)
+CMD ["python", "student.py"]
